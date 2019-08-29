@@ -1,0 +1,16 @@
+service: nfl-players-daily-file
+
+plugins:
+  - serverless-python-requirements
+provider:
+  name: aws
+  region: eu-west-1
+  runtime: python3.7
+
+functions:
+  cron:
+    memorySize: 128
+    timeout: 60
+    handler: handler.run
+    events:
+      - schedule: cron(0 15 * * ? *)
